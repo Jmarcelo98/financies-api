@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,6 +17,7 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 @Entity
+@Table(name = "USER_INFO")
 @Getter
 @Setter
 @SuperBuilder
