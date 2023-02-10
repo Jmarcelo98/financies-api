@@ -21,12 +21,16 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Incomes extends GenericEntity implements Serializable {
+public class Income extends GenericEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_type_incomes", nullable = false)
-	private TypeIncomes typeIncomes;
+	@JoinColumn(name = "id_type_income", nullable = false)
+	private TypeIncome typeIncome;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_user", nullable = false)
+	private User user;
 
 }

@@ -23,7 +23,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TypeIncomes extends GenericEntity implements Serializable {
+public class TypeIncome extends GenericEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -33,7 +33,7 @@ public class TypeIncomes extends GenericEntity implements Serializable {
 
 	private String description;
 
-	@OneToMany(mappedBy = "typeIncomes", orphanRemoval = false)
-	private List<Incomes> incomes;
+	@OneToMany(mappedBy = "typeIncome", orphanRemoval = false)
+	private List<Income> incomes;
 
 }
