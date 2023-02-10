@@ -28,7 +28,7 @@ public class Income extends GenericEntity implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_type_income", nullable = false)
 	private TypeIncome typeIncome;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_user", nullable = false)
 	private User user;
