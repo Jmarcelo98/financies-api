@@ -8,6 +8,6 @@ public interface GenericMapper<E, DTO> {
 
 	E DTOToEntity(DTO dto);
 
-	List<DTO> listaEntityToListaDTO(List<E> lista);
+	List<DTO> listEntityToListDTO(List<E> lista);
 
 }
