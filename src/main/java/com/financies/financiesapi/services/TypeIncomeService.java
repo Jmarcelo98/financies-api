@@ -21,9 +21,8 @@ public class TypeIncomeService {
 
 	public List<TypeIncomeDTO> getAll(Pageable pageable) {
 
-		var list = typeIncomeRepository.findAllByUser(user.getUserLogged(), pageable);
-
-		return TypeIncomeMapper.INSTANCE.listEntityToListDTO(list);
+		return TypeIncomeMapper.INSTANCE
+				.listEntityToListDTO(typeIncomeRepository.findAllByUser(user.getUserLogged(), pageable));
 
 	}
 
