@@ -23,6 +23,7 @@
 		<mapstruct.version>1.5.3.Final</mapstruct.version>
 		<swagger.version>2.9.2</swagger.version>
 		<h2.version>2.1.214</h2.version>
+		<jwt.version>4.2.1</jwt.version>
 	</properties>
 
 	<dependencies>
@@ -81,6 +82,20 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>${swagger.version}</version>
 		</dependency>
+
+		<!-- import security -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<!-- import jwt -->
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>${jwt.version}</version>
+		</dependency>
+
 
 	</dependencies>
 

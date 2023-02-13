@@ -4,12 +4,13 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
-import com.financies.financiesapi.generics.GenericEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,7 +24,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TypeIncome extends GenericEntity implements Serializable {
+public class TypeIncome implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -32,6 +33,10 @@ public class TypeIncome extends GenericEntity implements Serializable {
 	private Integer id;
 
 	private String description;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_user", nullable = false)
+	private User user;
 
 	@OneToMany(mappedBy = "typeIncome", orphanRemoval = false)
 	private List<Income> incomes;
