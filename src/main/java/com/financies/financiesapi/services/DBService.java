@@ -3,6 +3,7 @@ package com.financies.financiesapi.services;
 import java.time.LocalDate;
 import java.util.Arrays;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.financies.financiesapi.model.entities.Expense;
@@ -30,16 +31,20 @@ public class DBService {
 
 	public void createdBDH2() {
 
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
 		var localDateUser1 = LocalDate.of(2021, 4, 16);
 		var localDateUser2 = LocalDate.of(2022, 8, 1);
 		var localDateUserBirth1 = LocalDate.of(1998, 11, 16);
 		var localDateUserBirth2 = LocalDate.of(1999, 5, 26);
 
-		var user1 = User.builder().id(null).name("João Marcelo").cpf("05455329146").dateCreation(localDateUser1)
-				.dateBirth(localDateUserBirth1).photo(null).build();
+		var user1 = User.builder().id(null).name("João Marcelo").dateCreation(localDateUser1)
+				.dateBirth(localDateUserBirth1).photo(null).email("joao@gmail.com").password(encoder.encode("1234"))
+				.build();
 
-		var user2 = User.builder().id(null).name("Marcos Giovanny").cpf("00000000000").dateCreation(localDateUser2)
-				.dateBirth(localDateUserBirth2).photo(null).build();
+		var user2 = User.builder().id(null).name("Marcos Giovanny").dateCreation(localDateUser2)
+				.dateBirth(localDateUserBirth2).photo(null).email("marcos@gmail.com").password(encoder.encode("12345"))
+				.build();
 
 		userRepository.saveAll(Arrays.asList(user1, user2));
 

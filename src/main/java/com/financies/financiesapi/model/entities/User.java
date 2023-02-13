@@ -35,11 +35,13 @@ public class User implements Serializable {
 
 	private String name;
 
-	private String cpf;
-
 	private LocalDate dateCreation;
 
 	private LocalDate dateBirth;
+
+	private String email;
+
+	private String password;
 
 	@Lob
 	private Byte[] photo;
