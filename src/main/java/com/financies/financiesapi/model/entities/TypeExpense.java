@@ -4,9 +4,12 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
@@ -29,6 +32,10 @@ public class TypeExpense implements Serializable {
 	private Integer id;
 
 	private String description;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_user", nullable = false)
+	private User user;
 
 	@OneToMany(mappedBy = "typeExpense", orphanRemoval = false)
 	private List<Expense> expenses;

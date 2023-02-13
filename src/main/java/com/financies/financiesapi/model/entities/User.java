@@ -46,8 +46,14 @@ public class User implements Serializable {
 
 	@OneToMany(mappedBy = "user", orphanRemoval = false)
 	private List<Income> incomes;
-	
+
 	@OneToMany(mappedBy = "user", orphanRemoval = false)
 	private List<Expense> expenses;
+
+	@OneToMany(mappedBy = "user", orphanRemoval = false)
+	private List<TypeIncome> typeIncomes;
+
+	@OneToMany(mappedBy = "user", orphanRemoval = false)
+	private List<TypeExpense> typeExpenses;
 
 }
