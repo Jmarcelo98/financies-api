@@ -22,6 +22,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Expense extends GenericEntity implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	
 	
