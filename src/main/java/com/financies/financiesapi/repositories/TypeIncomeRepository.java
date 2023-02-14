@@ -13,5 +13,7 @@ public interface TypeIncomeRepository extends JpaRepository<TypeIncome, Integer>
 	List<TypeIncome> findAllByUser(User user, Pageable pageable);
 	
 	boolean existsByDescriptionIgnoreCaseAndUser(String description, User user);
+	
+	boolean existsByIdAndUser(Integer id, User user);
 
 }
