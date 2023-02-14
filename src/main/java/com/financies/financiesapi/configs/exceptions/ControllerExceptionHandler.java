@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.financies.financiesapi.handlers.BusinessException;
 import com.financies.financiesapi.handlers.ResourceNotFoundException;
 
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,20 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		var status = HttpStatus.NOT_FOUND;
+		var body = new ResponseError();
+
+		body.setCode(status.value());
+		body.setDescription(ex.getMessage());
+		return handleExceptionInternal(ex, body, headers, status, request);
+	}
+
+	@ExceptionHandler(BusinessException.class)
+	public ResponseEntity<Object> handleBusinessException(BusinessException ex, WebRequest request) {
+
+		var headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		var status = HttpStatus.CONFLICT;
 		var body = new ResponseError();
 
 		body.setCode(status.value());
