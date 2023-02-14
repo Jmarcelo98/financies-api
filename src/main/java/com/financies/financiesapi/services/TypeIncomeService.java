@@ -35,6 +35,18 @@ public class TypeIncomeService {
 		typeIncomeRepository.save(typeIncomeService);
 	}
 
+	public void update(TypeIncomeDTO typeIncomeDTO) {
+
+		var typeIncome = typeIncomeRepository.findById(typeIncomeDTO.getId());
+
+		if ( existsByDescription(typeIncomeDTO.getDescription(), userService.getUserLogged()) ) {
+			throw new BusinessException("Type of income already exists");
+		}
+
+		typeIncome.get().setDescription(typeIncomeDTO.getDescription());
+		typeIncomeRepository.save(typeIncome.get());
+	}
+
 	public List<TypeIncomeDTO> getAll(Pageable pageable) {
 
 		return TypeIncomeMapper.INSTANCE
