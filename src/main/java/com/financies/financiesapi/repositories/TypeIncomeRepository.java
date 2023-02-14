@@ -11,5 +11,7 @@ import com.financies.financiesapi.model.entities.User;
 public interface TypeIncomeRepository extends JpaRepository<TypeIncome, Integer> {
 
 	List<TypeIncome> findAllByUser(User user, Pageable pageable);
+	
+	boolean existsByDescriptionIgnoreCaseAndUser(String description, User user);
 
 }
