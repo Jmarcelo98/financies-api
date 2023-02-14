@@ -3,6 +3,7 @@ package com.financies.financiesapi.model.entities;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PreRemove;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,7 +40,12 @@ public class TypeIncome implements Serializable {
 	@JoinColumn(name = "id_user", nullable = false)
 	private User user;
 
-	@OneToMany(mappedBy = "typeIncome", orphanRemoval = false)
+	@OneToMany(mappedBy = "typeIncome", cascade = { CascadeType.PERSIST })
 	private List<Income> incomes;
+
+	@PreRemove
+	private void preRemove() {
+		incomes.forEach(typeIncome -> typeIncome.setTypeIncome(null));
+	}
 
 }

@@ -39,12 +39,22 @@ public class TypeIncomeService {
 
 		var typeIncome = typeIncomeRepository.findById(typeIncomeDTO.getId());
 
-		if ( existsByDescription(typeIncomeDTO.getDescription(), userService.getUserLogged()) ) {
+		if (existsByDescription(typeIncomeDTO.getDescription(), userService.getUserLogged())) {
 			throw new BusinessException("Type of income already exists");
 		}
 
 		typeIncome.get().setDescription(typeIncomeDTO.getDescription());
 		typeIncomeRepository.save(typeIncome.get());
+	}
+
+	public void delete(Integer id) {
+
+		if (!existsByIdAndUser(id, userService.getUserLogged())) {
+			throw new BusinessException("Impossible to delete another user's income type");
+		}
+
+		typeIncomeRepository.deleteById(id);
+
 	}
 
 	public List<TypeIncomeDTO> getAll(Pageable pageable) {
@@ -56,6 +66,10 @@ public class TypeIncomeService {
 
 	private boolean existsByDescription(String description, User user) {
 		return typeIncomeRepository.existsByDescriptionIgnoreCaseAndUser(description, user);
+	}
+
+	private boolean existsByIdAndUser(Integer id, User user) {
+		return typeIncomeRepository.existsByIdAndUser(id, user);
 	}
 
 }

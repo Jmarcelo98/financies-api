@@ -38,7 +38,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 		var headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
-		var status = HttpStatus.CONFLICT;
+		var status = HttpStatus.BAD_REQUEST;
 		var body = new ResponseError();
 
 		body.setCode(status.value());
