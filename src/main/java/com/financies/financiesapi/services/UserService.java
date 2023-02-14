@@ -18,7 +18,6 @@ public class UserService {
 	private final UserRepository userRepository;
 
 	public User getUserLogged() {
-		System.err.println("jwtUtils.getPrincipal(): " + jwtUtils.getPrincipal());
 		return userRepository.findByEmailIgnoreCase(jwtUtils.getPrincipal())
 				.orElseThrow(() -> new ResourceNotFoundException("User not found by email"));
 	}

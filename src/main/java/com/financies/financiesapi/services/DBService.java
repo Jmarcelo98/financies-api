@@ -102,10 +102,10 @@ public class DBService {
 		var expenseDate2User1 = LocalDate.of(2023, 2, 10);
 
 		var expense1User2 = Expense.builder().id(null).description("Uber para casa").value(35.90)
-				.dateInclusion(LocalDate.now()).isReceived(true).typeExpense(typeExpense1User2).user(user1).build();
+				.dateInclusion(LocalDate.now()).isReceived(true).typeExpense(typeExpense1User2).user(user2).build();
 
 		var expense2User2 = Expense.builder().id(null).description("Almoço").value(20.00)
-				.dateInclusion(expenseDate2User1).isReceived(true).typeExpense(typeExpense2User2).user(user1).build();
+				.dateInclusion(expenseDate2User1).isReceived(true).typeExpense(typeExpense2User2).user(user2).build();
 
 		expenseRepository.saveAll(Arrays.asList(expense1User1, expense2User1, expense1User2, expense2User2));
 	}
