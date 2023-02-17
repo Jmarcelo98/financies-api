@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.financies.financiesapi.configs.security.JWTUtils;
 import com.financies.financiesapi.handlers.BusinessException;
+import com.financies.financiesapi.handlers.ConflictException;
 import com.financies.financiesapi.handlers.ResourceNotFoundException;
 import com.financies.financiesapi.mappers.UserMapper;
 import com.financies.financiesapi.mappers.UserRegisterMapper;
@@ -26,7 +27,7 @@ public class UserService {
 	public UserDTO create(UserRegisterDTO userRegisterDTO) {
 
 		if (existsByEmail(userRegisterDTO.getEmail())) {
-			throw new BusinessException("E-mail already registered.");
+			throw new ConflictException("E-mail already registered.");
 		}
 
 		final BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder();

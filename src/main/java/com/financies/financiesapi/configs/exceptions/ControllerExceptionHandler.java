@@ -15,6 +15,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.financies.financiesapi.handlers.BusinessException;
+import com.financies.financiesapi.handlers.ConflictException;
 import com.financies.financiesapi.handlers.ResourceNotFoundException;
 import com.financies.financiesapi.handlers.UnauthorizedLoginException;
 
@@ -59,6 +60,20 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		var status = HttpStatus.UNAUTHORIZED;
+		var body = new ResponseError();
+
+		body.setCode(status.value());
+		body.setDescription(ex.getMessage());
+		return handleExceptionInternal(ex, body, headers, status, request);
+	}
+
+	@ExceptionHandler(ConflictException.class)
+	public ResponseEntity<Object> handleResourceNotFoundException(ConflictException ex, WebRequest request) {
+
+		var headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		var status = HttpStatus.CONFLICT;
 		var body = new ResponseError();
 
 		body.setCode(status.value());
