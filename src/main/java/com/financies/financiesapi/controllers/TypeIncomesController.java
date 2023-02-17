@@ -1,7 +1,6 @@
 package com.financies.financiesapi.controllers;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -27,7 +26,7 @@ public class TypeIncomesController {
 	private final TypeIncomeService typeIncomeService;
 
 	@GetMapping
-	public ResponseEntity<List<TypeIncomeDTO>> getAll(Pageable pageable) {
+	public ResponseEntity<Page<TypeIncomeDTO>> getAll(Pageable pageable) {
 		return ResponseEntity.ok(typeIncomeService.getAll(pageable));
 	}
 

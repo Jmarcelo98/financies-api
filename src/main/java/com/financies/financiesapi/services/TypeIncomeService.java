@@ -1,7 +1,6 @@
 package com.financies.financiesapi.services;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +29,8 @@ public class TypeIncomeService {
 			throw new BusinessException("Type of income already exists");
 		}
 
-		var typeIncomeService = TypeIncome.builder().id(null).description(typeIncomeDTO.getDescription()).user(userLogged).build();
+		var typeIncomeService = TypeIncome.builder().id(null).description(typeIncomeDTO.getDescription())
+				.user(userLogged).build();
 
 		typeIncomeRepository.save(typeIncomeService);
 	}
@@ -57,10 +57,11 @@ public class TypeIncomeService {
 
 	}
 
-	public List<TypeIncomeDTO> getAll(Pageable pageable) {
+	public Page<TypeIncomeDTO> getAll(Pageable pageable) {
 
-		return TypeIncomeMapper.INSTANCE
-				.listEntityToListDTO(typeIncomeRepository.findAllByUser(userService.getUserLogged(), pageable));
+		var list = typeIncomeRepository.findAllByUser(userService.getUserLogged(), pageable);
+
+		return TypeIncomeMapper.INSTANCE.pageEntityToPageDTO(list);
 
 	}
 

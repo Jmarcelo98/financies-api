@@ -4,7 +4,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.financies.financiesapi.configs.security.JWTUtils;
-import com.financies.financiesapi.handlers.BusinessException;
 import com.financies.financiesapi.handlers.ConflictException;
 import com.financies.financiesapi.handlers.ResourceNotFoundException;
 import com.financies.financiesapi.mappers.UserMapper;
@@ -23,6 +22,12 @@ public class UserService {
 	private final JWTUtils jwtUtils;
 
 	private final UserRepository userRepository;
+
+	public UserDTO getUser() {
+
+		return UserMapper.INSTANCE.entityToDTO(getUserLogged());
+
+	}
 
 	public UserDTO create(UserRegisterDTO userRegisterDTO) {
 
