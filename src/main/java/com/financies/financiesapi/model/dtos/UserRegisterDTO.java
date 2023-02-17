@@ -1,7 +1,6 @@
 package com.financies.financiesapi.model.dtos;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -14,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserRegisterDTO {
 
-	@NotBlank(message = "{email.not.null}")
+	@NotNull(message = "{email.not.null}")
 	@Email(message = "{email.invalid}")
 	private String email;
 
