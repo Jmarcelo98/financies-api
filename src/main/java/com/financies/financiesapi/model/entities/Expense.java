@@ -27,7 +27,7 @@ public class Expense extends GenericEntity implements Serializable {
 	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_type_expense", nullable = false)
+	@JoinColumn(name = "id_type_expense", nullable = true)
 	private TypeExpense typeExpense;
 	
 	
