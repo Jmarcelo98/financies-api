@@ -3,6 +3,7 @@ package com.financies.financiesapi.model.entities;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PreRemove;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,7 +39,13 @@ public class TypeExpense implements Serializable {
 	@JoinColumn(name = "id_user", nullable = false)
 	private User user;
 
-	@OneToMany(mappedBy = "typeExpense", orphanRemoval = false)
+	@OneToMany(mappedBy = "typeExpense", cascade = { CascadeType.PERSIST })
 	private List<Expense> expenses;
+	
+	
+	@PreRemove
+	private void preRemove() {
+		expenses.forEach(typeExpense -> typeExpense.setTypeExpense(null));
+	}
 
 }
