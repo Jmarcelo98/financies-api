@@ -49,19 +49,19 @@ public class DBService {
 		userRepository.saveAll(Arrays.asList(user1, user2));
 
 		var typeExpense1User1 = TypeExpense.builder().id(null).description("Spotify").user(user1).build();
-		var typeExpense2User1 = TypeExpense.builder().id(null).description("Aluguel").user(user1).build();
+		var typeExpense2User1 = TypeExpense.builder().id(null).description("Rental").user(user1).build();
 
-		var typeExpense1User2 = TypeExpense.builder().id(null).description("Transporte").user(user2).build();
-		var typeExpense2User2 = TypeExpense.builder().id(null).description("Alimentação").user(user2).build();
+		var typeExpense1User2 = TypeExpense.builder().id(null).description("Transport").user(user2).build();
+		var typeExpense2User2 = TypeExpense.builder().id(null).description("Food").user(user2).build();
 
 		typeExpenseRepository
 				.saveAll(Arrays.asList(typeExpense1User1, typeExpense2User1, typeExpense1User2, typeExpense2User2));
 
-		var typeIncome1User1 = TypeIncome.builder().id(null).description("Salário").user(user1).build();
-		var typeIncome2User1 = TypeIncome.builder().id(null).description("Apostas").user(user1).build();
+		var typeIncome1User1 = TypeIncome.builder().id(null).description("Salary").user(user1).build();
+		var typeIncome2User1 = TypeIncome.builder().id(null).description("Bet").user(user1).build();
 
-		var typeIncome1User2 = TypeIncome.builder().id(null).description("Venda do Alimentação").user(user2).build();
-		var typeIncome2User2 = TypeIncome.builder().id(null).description("Salário").user(user2).build();
+		var typeIncome1User2 = TypeIncome.builder().id(null).description("Sale of food").user(user2).build();
+		var typeIncome2User2 = TypeIncome.builder().id(null).description("Salary").user(user2).build();
 
 		typeIncomeRepository
 				.saveAll(Arrays.asList(typeIncome1User1, typeIncome2User1, typeIncome1User2, typeIncome2User2));
@@ -76,17 +76,17 @@ public class DBService {
 		var income2User1 = Income.builder().id(null).description(null).value(6900.50).dateInclusion(incomeDate2User1)
 				.isReceived(true).typeIncome(typeIncome1User1).user(user1).build();
 
-		var income3User1 = Income.builder().id(null).description("Vitória do Cruzeiro contra o Atlético-MG")
+		var income3User1 = Income.builder().id(null).description("Cruzeiro win against Atlético-MG")
 				.value(60.00).dateInclusion(incomeDate3User1).isReceived(false).typeIncome(typeIncome2User1).user(user1)
 				.build();
 
 		var incomeDate1User2 = LocalDate.of(2023, 1, 16);
 		var incomeDate2User2 = LocalDate.of(2023, 1, 31);
 
-		var income1User2 = Income.builder().id(null).description("Primeira parcela").value(1000.00)
+		var income1User2 = Income.builder().id(null).description("First installment").value(1000.00)
 				.dateInclusion(incomeDate1User2).isReceived(true).typeIncome(typeIncome2User2).user(user2).build();
 
-		var income2User2 = Income.builder().id(null).description("Segunda parcela").value(500.50)
+		var income2User2 = Income.builder().id(null).description("Second installment").value(500.50)
 				.dateInclusion(incomeDate2User2).isReceived(false).typeIncome(typeIncome2User2).user(user2).build();
 
 		incomeRepository.saveAll(Arrays.asList(income1User1, income2User1, income3User1, income1User2, income2User2));
@@ -101,10 +101,10 @@ public class DBService {
 
 		var expenseDate2User1 = LocalDate.of(2023, 2, 10);
 
-		var expense1User2 = Expense.builder().id(null).description("Uber para casa").value(35.90)
+		var expense1User2 = Expense.builder().id(null).description("Uber to home").value(35.90)
 				.dateInclusion(LocalDate.now()).isReceived(true).typeExpense(typeExpense1User2).user(user2).build();
 
-		var expense2User2 = Expense.builder().id(null).description("Almoço").value(20.00)
+		var expense2User2 = Expense.builder().id(null).description("Lunch").value(20.00)
 				.dateInclusion(expenseDate2User1).isReceived(true).typeExpense(typeExpense2User2).user(user2).build();
 
 		expenseRepository.saveAll(Arrays.asList(expense1User1, expense2User1, expense1User2, expense2User2));
