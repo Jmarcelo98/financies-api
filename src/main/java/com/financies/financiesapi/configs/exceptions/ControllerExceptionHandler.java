@@ -68,7 +68,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 
 	@ExceptionHandler(ConflictException.class)
-	public ResponseEntity<Object> handleResourceNotFoundException(ConflictException ex, WebRequest request) {
+	public ResponseEntity<Object> handleConflictExceptionException(ConflictException ex, WebRequest request) {
 
 		var headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
