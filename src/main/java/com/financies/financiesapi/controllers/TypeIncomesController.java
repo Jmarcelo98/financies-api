@@ -30,6 +30,11 @@ public class TypeIncomesController {
 		return ResponseEntity.ok(typeIncomeService.getAll(pageable));
 	}
 
+	@GetMapping("/{id}")
+	public ResponseEntity<TypeIncomeDTO> getById(@PathVariable Integer id) {
+		return ResponseEntity.ok(typeIncomeService.getById(id));
+	}
+
 	@PatchMapping
 	public ResponseEntity<Void> update(@RequestBody @Validated TypeIncomeDTO typeIncomeDTO) {
 		typeIncomeService.update(typeIncomeDTO);
