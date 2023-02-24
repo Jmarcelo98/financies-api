@@ -57,6 +57,18 @@ public class TypeIncomeService {
 
 	}
 
+	public TypeIncomeDTO getById(Integer id) {
+
+		var type = typeIncomeRepository.findByIdAndUser(id, userService.getUserLogged());
+
+		if (type == null) {
+			throw new BusinessException("You cannot access another user's income type");
+		}
+
+		return TypeIncomeMapper.INSTANCE.entityToDTO(type);
+
+	}
+
 	public Page<TypeIncomeDTO> getAll(Pageable pageable) {
 
 		var list = typeIncomeRepository.findAllByUser(userService.getUserLogged(), pageable);
