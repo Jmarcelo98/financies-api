@@ -59,12 +59,14 @@ public class DBService {
 
 		var typeIncome1User1 = TypeIncome.builder().id(null).description("Salary").user(user1).build();
 		var typeIncome2User1 = TypeIncome.builder().id(null).description("Bet").user(user1).build();
+		var typeIncome3User1 = TypeIncome.builder().id(null).description("Projects/Freelance").user(user1).build();
+
 
 		var typeIncome1User2 = TypeIncome.builder().id(null).description("Sale of food").user(user2).build();
 		var typeIncome2User2 = TypeIncome.builder().id(null).description("Salary").user(user2).build();
 
 		typeIncomeRepository
-				.saveAll(Arrays.asList(typeIncome1User1, typeIncome2User1, typeIncome1User2, typeIncome2User2));
+				.saveAll(Arrays.asList(typeIncome1User1, typeIncome2User1, typeIncome3User1, typeIncome1User2, typeIncome2User2));
 
 		var incomeDate1User1 = LocalDate.of(2023, 1, 2);
 		var incomeDate2User1 = LocalDate.of(2023, 2, 1);
@@ -76,9 +78,17 @@ public class DBService {
 		var income2User1 = Income.builder().id(null).description(null).value(6900.50).dateInclusion(incomeDate2User1)
 				.isReceived(true).typeIncome(typeIncome1User1).user(user1).build();
 
-		var income3User1 = Income.builder().id(null).description("Cruzeiro win against Atlético-MG")
-				.value(60.00).dateInclusion(incomeDate3User1).isReceived(false).typeIncome(typeIncome2User1).user(user1)
-				.build();
+		var income3User1 = Income.builder().id(null).description("Cruzeiro win against Atlético-MG").value(60.00)
+				.dateInclusion(incomeDate3User1).isReceived(false).typeIncome(typeIncome2User1).user(user1).build();
+
+		var income4User1 = Income.builder().id(null).description("Project PJ").value(1060.00)
+				.dateInclusion(incomeDate3User1).isReceived(true).typeIncome(typeIncome3User1).user(user1).build();
+
+		var income5User1 = Income.builder().id(null).description("Freelancer").value(360.00)
+				.dateInclusion(incomeDate3User1).isReceived(true).typeIncome(typeIncome3User1).user(user1).build();
+
+		var income6User1 = Income.builder().id(null).description("Freelancer GOV").value(3360.00)
+				.dateInclusion(incomeDate3User1).isReceived(true).typeIncome(typeIncome3User1).user(user1).build();
 
 		var incomeDate1User2 = LocalDate.of(2023, 1, 16);
 		var incomeDate2User2 = LocalDate.of(2023, 1, 31);
@@ -89,7 +99,8 @@ public class DBService {
 		var income2User2 = Income.builder().id(null).description("Second installment").value(500.50)
 				.dateInclusion(incomeDate2User2).isReceived(false).typeIncome(typeIncome2User2).user(user2).build();
 
-		incomeRepository.saveAll(Arrays.asList(income1User1, income2User1, income3User1, income1User2, income2User2));
+		incomeRepository.saveAll(Arrays.asList(income1User1, income2User1, income3User1, income4User1, income5User1,
+				income6User1, income1User2, income2User2));
 
 		var expenseDate1User1 = LocalDate.of(2023, 2, 1);
 
