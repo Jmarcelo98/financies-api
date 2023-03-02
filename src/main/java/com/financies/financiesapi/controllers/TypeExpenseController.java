@@ -1,7 +1,6 @@
 package com.financies.financiesapi.controllers;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,19 +26,19 @@ public class TypeExpenseController {
 	
 	@PostMapping
 	public ResponseEntity<Void> createTypeExpense(String description){
-		typeExpenseService.createTypeExpense(description);
+		typeExpenseService.create(description);
 		return ResponseEntity.ok().build();
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<TypeExpenseDTO>> getAllTypeExpenses(Pageable pageable){
+	public ResponseEntity<Page<TypeExpenseDTO>> getAllTypeExpenses(Pageable pageable){
 		return ResponseEntity.ok(typeExpenseService.getAll(pageable));
 		
 	}
 	
 	@PatchMapping
 	public ResponseEntity<Void> updateTypeExpense(@RequestBody TypeExpenseDTO typeExpenseDTO){
-		typeExpenseService.updateTypeExpense(typeExpenseDTO);
+		typeExpenseService.update(typeExpenseDTO);
 		
 		return ResponseEntity.ok().build();
 		
@@ -47,7 +46,7 @@ public class TypeExpenseController {
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteTypeExpense(@PathVariable Integer id){
-		typeExpenseService.deleteTypeExpense(id);
+		typeExpenseService.delete(id);
 		return ResponseEntity.ok().build();
 	}
 	
