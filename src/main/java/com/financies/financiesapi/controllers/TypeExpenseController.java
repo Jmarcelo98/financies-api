@@ -36,6 +36,11 @@ public class TypeExpenseController {
 		
 	}
 	
+	@GetMapping("/{id}")
+	public ResponseEntity<TypeExpenseDTO> getById(@PathVariable Integer id){
+		return ResponseEntity.ok(typeExpenseService.getById(id));
+	}
+	
 	@PatchMapping
 	public ResponseEntity<Void> updateTypeExpense(@RequestBody TypeExpenseDTO typeExpenseDTO){
 		typeExpenseService.update(typeExpenseDTO);

@@ -39,6 +39,16 @@ public class TypeExpenseService {
 		return TypeExpenseMapper.INSTANCE.pageEntityToPageDTO(list);
 	}
 	
+	public TypeExpenseDTO getById(Integer id) {
+		
+		var type = typeExpenseRepository.findByIdAndUser(id, userService.getUserLogged());
+		
+		if(type == null) {
+			throw new BusinessException("You cannot access another user's expense type");
+		}
+		return TypeExpenseMapper.INSTANCE.entityToDTO(type);
+	}
+	
 	public void update(TypeExpenseDTO typeExpenseDTO) {
 		
 		var typeExpense = typeExpenseRepository.findById(typeExpenseDTO.getId());
