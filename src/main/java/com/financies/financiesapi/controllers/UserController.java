@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.financies.financiesapi.model.dtos.UserDTO;
+import com.financies.financiesapi.model.dtos.UserNamePhotoDTO;
 import com.financies.financiesapi.model.dtos.UserRegisterDTO;
 import com.financies.financiesapi.services.UserService;
 
@@ -20,10 +21,15 @@ import lombok.AllArgsConstructor;
 public class UserController {
 
 	private final UserService userService;
-	
+
 	@GetMapping
-	public ResponseEntity<UserDTO> getUser() {
+	public ResponseEntity<UserDTO> get() {
 		return ResponseEntity.ok(userService.getUser());
+	}
+
+	@GetMapping("/name-photo")
+	public ResponseEntity<UserNamePhotoDTO> getNamePhoto() {
+		return ResponseEntity.ok(userService.getNamePhoto());
 	}
 
 	@PostMapping

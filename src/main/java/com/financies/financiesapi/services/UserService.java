@@ -7,8 +7,10 @@ import com.financies.financiesapi.configs.security.JWTUtils;
 import com.financies.financiesapi.handlers.ConflictException;
 import com.financies.financiesapi.handlers.ResourceNotFoundException;
 import com.financies.financiesapi.mappers.UserMapper;
+import com.financies.financiesapi.mappers.UserNamePhotoMapper;
 import com.financies.financiesapi.mappers.UserRegisterMapper;
 import com.financies.financiesapi.model.dtos.UserDTO;
+import com.financies.financiesapi.model.dtos.UserNamePhotoDTO;
 import com.financies.financiesapi.model.dtos.UserRegisterDTO;
 import com.financies.financiesapi.model.entities.User;
 import com.financies.financiesapi.repositories.UserRepository;
@@ -27,6 +29,10 @@ public class UserService {
 
 		return UserMapper.INSTANCE.entityToDTO(getUserLogged());
 
+	}
+
+	public UserNamePhotoDTO getNamePhoto() {
+		return UserNamePhotoMapper.INSTANCE.entityToDTO(getUserLogged());
 	}
 
 	public UserDTO create(UserRegisterDTO userRegisterDTO) {
