@@ -1,4 +1,4 @@
-package com.financies.financiesapi.mappers.generic;
+package com.financies.financiesapi.generics;
 
 import java.util.List;
 

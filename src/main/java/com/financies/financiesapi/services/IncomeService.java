@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.financies.financiesapi.handlers.BusinessException;
+import com.financies.financiesapi.handlers.ResourceNotFoundException;
 import com.financies.financiesapi.mappers.IncomeMapper;
 import com.financies.financiesapi.model.dtos.IncomeDTO;
 import com.financies.financiesapi.model.entities.User;
@@ -40,6 +41,19 @@ public class IncomeService {
 
 	}
 
+	public void update(IncomeDTO incomeDTO) {
+
+		incomeRepository.findById(incomeDTO.getId())
+				.orElseThrow(() -> new ResourceNotFoundException("Income not found by id"));
+
+		var income = IncomeMapper.INSTANCE.DTOToEntity(incomeDTO);
+
+		income.setUser(userService.getUserLogged());
+
+		incomeRepository.save(income);
+
+	}
+
 	public void delete(Integer id) {
 
 		if (!existsByIdAndUser(id, userService.getUserLogged())) {
@@ -50,10 +64,6 @@ public class IncomeService {
 
 	}
 
-//	private boolean existsByDescription(String description, User user) {
-//		return typeIncomeRepository.existsByDescriptionIgnoreCaseAndUser(description, user);
-//	}
-//
 	private boolean existsByIdAndUser(Integer id, User user) {
 		return incomeRepository.existsByIdAndUser(id, user);
 	}

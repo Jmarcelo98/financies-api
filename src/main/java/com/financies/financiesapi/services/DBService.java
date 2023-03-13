@@ -79,16 +79,20 @@ public class DBService {
 				.isReceived(true).typeIncome(typeIncome1User1).user(user1).build();
 
 		var income3User1 = Income.builder().id(null).description("Cruzeiro win against Atlético-MG").value(60.00)
-				.dateInclusion(incomeDate3User1).isReceived(false).typeIncome(typeIncome2User1).user(user1).build();
+				.dateInclusion(incomeDate3User1).isReceived(false).dateReference(null).typeIncome(typeIncome2User1)
+				.user(user1).build();
 
 		var income4User1 = Income.builder().id(null).description("Project PJ").value(1060.00)
-				.dateInclusion(incomeDate3User1).isReceived(true).typeIncome(typeIncome3User1).user(user1).build();
+				.dateInclusion(incomeDate3User1).isReceived(true).dateReference(incomeDate3User1)
+				.typeIncome(typeIncome3User1).user(user1).build();
 
 		var income5User1 = Income.builder().id(null).description("Freelancer").value(360.00)
-				.dateInclusion(incomeDate4User1).isReceived(true).typeIncome(typeIncome3User1).user(user1).build();
+				.dateInclusion(incomeDate4User1).isReceived(true).dateReference(incomeDate4User1)
+				.typeIncome(typeIncome3User1).user(user1).build();
 
 		var income6User1 = Income.builder().id(null).description("Freelancer GOV").value(3360.00)
-				.dateInclusion(LocalDate.now()).isReceived(true).typeIncome(typeIncome3User1).user(user1).build();
+				.dateInclusion(LocalDate.now()).isReceived(true).dateReference(LocalDate.now())
+				.typeIncome(typeIncome3User1).user(user1).build();
 
 		var incomeDate1User2 = LocalDate.of(2023, 1, 16);
 		var incomeDate2User2 = LocalDate.of(2023, 1, 31);
@@ -105,18 +109,18 @@ public class DBService {
 		var expenseDate1User1 = LocalDate.of(2023, 2, 1);
 
 		var expense1User1 = Expense.builder().id(null).description(null).value(39.90).dateInclusion(expenseDate1User1)
-				.isReceived(true).typeExpense(typeExpense1User1).user(user1).build();
+				.isReceived(true).typeExpense(typeExpense1User1).dateReference(expenseDate1User1).user(user1).build();
 
 		var expense2User1 = Expense.builder().id(null).description(null).value(2000.00).dateInclusion(incomeDate1User1)
-				.isReceived(true).typeExpense(typeExpense2User1).user(user1).build();
+				.isReceived(true).dateReference(incomeDate1User1).typeExpense(typeExpense2User1).user(user1).build();
 
 		var expenseDate2User1 = LocalDate.of(2023, 2, 10);
 
 		var expense1User2 = Expense.builder().id(null).description("Uber to home").value(35.90)
-				.dateInclusion(LocalDate.now()).isReceived(true).typeExpense(typeExpense1User2).user(user2).build();
+				.dateInclusion(LocalDate.now()).isReceived(true).dateReference(LocalDate.now()).typeExpense(typeExpense1User2).user(user2).build();
 
 		var expense2User2 = Expense.builder().id(null).description("Lunch").value(20.00)
-				.dateInclusion(expenseDate2User1).isReceived(true).typeExpense(typeExpense2User2).user(user2).build();
+				.dateInclusion(expenseDate2User1).isReceived(false).dateReference(null).typeExpense(typeExpense2User2).user(user2).build();
 
 		expenseRepository.saveAll(Arrays.asList(expense1User1, expense2User1, expense1User2, expense2User2));
 	}

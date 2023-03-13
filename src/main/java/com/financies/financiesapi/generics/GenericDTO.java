@@ -1,4 +1,4 @@
-package com.financies.financiesapi.model.dtos.generic;
+package com.financies.financiesapi.generics;
 
 import java.time.LocalDate;
 
@@ -18,6 +18,8 @@ public class GenericDTO {
 	private Double value;
 
 	private LocalDate dateInclusion;
+
+	protected LocalDate dateReference;
 
 	private Boolean isReceived;
 }

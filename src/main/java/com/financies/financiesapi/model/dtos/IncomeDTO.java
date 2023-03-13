@@ -1,6 +1,6 @@
 package com.financies.financiesapi.model.dtos;
 
-import com.financies.financiesapi.model.dtos.generic.GenericDTO;
+import com.financies.financiesapi.generics.GenericDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

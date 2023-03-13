@@ -33,6 +33,8 @@ public class GenericEntity {
 
 	protected LocalDate dateInclusion;
 
+	protected LocalDate dateReference;
+
 	protected Boolean isReceived;
 
 }
