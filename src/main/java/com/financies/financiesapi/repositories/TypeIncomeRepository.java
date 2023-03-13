@@ -1,5 +1,7 @@
 package com.financies.financiesapi.repositories;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,6 +13,8 @@ public interface TypeIncomeRepository extends JpaRepository<TypeIncome, Integer>
 
 	Page<TypeIncome> findAllByUser(User user, Pageable pageable);
 
+	List<TypeIncome> findAllByUser(User user);
+	
 	TypeIncome findByIdAndUser(Integer id, User user);
 
 	boolean existsByDescriptionIgnoreCaseAndUser(String description, User user);

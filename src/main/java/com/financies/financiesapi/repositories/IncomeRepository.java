@@ -9,6 +9,10 @@ import com.financies.financiesapi.model.entities.User;
 
 public interface IncomeRepository extends JpaRepository<Income, Integer> {
 
-	Page<Income> findAllByUser(User user, Pageable pageable);
+	Page<Income> findAllByUserOrderByDateInclusionDesc(User user, Pageable pageable);
+
+	Income findByIdAndUser(Integer id, User user);
+	
+	boolean existsByIdAndUser(Integer id, User user);
 
 }

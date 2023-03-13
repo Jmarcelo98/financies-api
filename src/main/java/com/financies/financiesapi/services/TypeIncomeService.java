@@ -1,5 +1,7 @@
 package com.financies.financiesapi.services;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -69,11 +71,19 @@ public class TypeIncomeService {
 
 	}
 
-	public Page<TypeIncomeDTO> getAll(Pageable pageable) {
+	public Page<TypeIncomeDTO> getAllPageable(Pageable pageable) {
 
 		var list = typeIncomeRepository.findAllByUser(userService.getUserLogged(), pageable);
 
 		return TypeIncomeMapper.INSTANCE.pageEntityToPageDTO(list);
+
+	}
+
+	public List<TypeIncomeDTO> getAll() {
+
+		var list = typeIncomeRepository.findAllByUser(userService.getUserLogged());
+
+		return TypeIncomeMapper.INSTANCE.listEntityToListDTO(list);
 
 	}
 
