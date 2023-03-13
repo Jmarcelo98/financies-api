@@ -1,7 +1,6 @@
 package com.financies.financiesapi.services;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +20,7 @@ public class TypeExpenseService {
 	private final TypeExpenseRepository typeExpenseRepository;
 	private final UserService userService;
 
-	public void createTypeExpense(String description) {
+	public void create(String description) {
 
 		var userLogged = userService.getUserLogged();
 
@@ -33,12 +32,24 @@ public class TypeExpenseService {
 		typeExpenseRepository.save(typeExpense);
 	}
 
-	public List<TypeExpenseDTO> getAll(Pageable pageable) {
-		return TypeExpenseMapper.INSTANCE
-				.listEntityToListDTO(typeExpenseRepository.findAllByUser(userService.getUserLogged(), pageable));
+	public Page<TypeExpenseDTO> getAll(Pageable pageable) {
+		
+		var list = typeExpenseRepository.findAllByUser(userService.getUserLogged(), pageable);
+		
+		return TypeExpenseMapper.INSTANCE.pageEntityToPageDTO(list);
 	}
 	
-	public void updateTypeExpense(TypeExpenseDTO typeExpenseDTO) {
+	public TypeExpenseDTO getById(Integer id) {
+		
+		var type = typeExpenseRepository.findByIdAndUser(id, userService.getUserLogged());
+		
+		if(type == null) {
+			throw new BusinessException("You cannot access another user's expense type");
+		}
+		return TypeExpenseMapper.INSTANCE.entityToDTO(type);
+	}
+	
+	public void update(TypeExpenseDTO typeExpenseDTO) {
 		
 		var typeExpense = typeExpenseRepository.findById(typeExpenseDTO.getId());
 		
@@ -50,7 +61,7 @@ public class TypeExpenseService {
 		typeExpenseRepository.save(typeExpense.get());
 	}
 	
-	public void deleteTypeExpense(Integer id) {
+	public void delete(Integer id) {
 		
 		if(!existsByIdAndUser(id, userService.getUserLogged())) {
 			throw new BusinessException("Type doesn't exist and for this cannot be deleted");
