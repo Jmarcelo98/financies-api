@@ -8,6 +8,7 @@ import com.financies.financiesapi.handlers.BusinessException;
 import com.financies.financiesapi.handlers.ResourceNotFoundException;
 import com.financies.financiesapi.mappers.IncomeMapper;
 import com.financies.financiesapi.model.dtos.IncomeDTO;
+import com.financies.financiesapi.model.dtos.input.IncomeFilterDTO;
 import com.financies.financiesapi.model.entities.User;
 import com.financies.financiesapi.repositories.IncomeRepository;
 
@@ -21,9 +22,14 @@ public class IncomeService {
 
 	private final UserService userService;
 
-	public Page<IncomeDTO> getAll(Pageable pageable) {
+	public Page<IncomeDTO> getAllByFilter(IncomeFilterDTO incomeFilterDTO, Pageable pageable) {
 
-		var list = incomeRepository.findAllByUserOrderByDateInclusionDesc(userService.getUserLogged(), pageable);
+		var list = incomeRepository.findAllByFilterAndPageable(userService.getUserLogged().getId(),
+				incomeFilterDTO.getIsReceived(),
+				incomeFilterDTO.getDateReference() != null ? incomeFilterDTO.getDateReference().getYear() : null,
+				incomeFilterDTO.getDateReference() != null ? incomeFilterDTO.getDateReference().getMonth().getValue()
+						: null,
+				incomeFilterDTO.getTypeIncome() != null ? incomeFilterDTO.getTypeIncome().getId() : null, pageable);
 
 		return IncomeMapper.INSTANCE.pageEntityToPageDTO(list);
 

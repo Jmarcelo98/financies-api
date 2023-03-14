@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.financies.financiesapi.model.dtos.IncomeDTO;
+import com.financies.financiesapi.model.dtos.input.IncomeFilterDTO;
 import com.financies.financiesapi.services.IncomeService;
 
 import lombok.AllArgsConstructor;
@@ -24,9 +26,10 @@ public class IncomesController {
 
 	private final IncomeService incomeService;
 
-	@GetMapping
-	public ResponseEntity<Page<IncomeDTO>> getAll(Pageable pageable) {
-		return ResponseEntity.ok(incomeService.getAll(pageable));
+	@PostMapping("/filter/pageable")
+	public ResponseEntity<Page<IncomeDTO>> getAllByFilter(@RequestBody IncomeFilterDTO incomeFilterDTO,
+			Pageable pageable) {
+		return ResponseEntity.ok(incomeService.getAllByFilter(incomeFilterDTO, pageable));
 	}
 
 	@GetMapping("/{id}")
