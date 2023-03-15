@@ -73,13 +73,13 @@ public class DBService {
 		var incomeDate4User1 = LocalDate.of(2022, 12, 13);
 
 		var income1User1 = Income.builder().id(null).description(null).value(6200.00).dateInclusion(incomeDate1User1)
-				.isReceived(true).typeIncome(typeIncome1User1).user(user1).build();
+				.isReceived(true).typeIncome(typeIncome1User1).dateReference(incomeDate1User1).user(user1).build();
 
 		var income2User1 = Income.builder().id(null).description(null).value(6900.50).dateInclusion(incomeDate2User1)
-				.isReceived(true).typeIncome(typeIncome1User1).user(user1).build();
+				.isReceived(true).typeIncome(typeIncome1User1).dateReference(incomeDate2User1).user(user1).build();
 
 		var income3User1 = Income.builder().id(null).description("Cruzeiro win against Atlético-MG").value(60.00)
-				.dateInclusion(incomeDate3User1).isReceived(false).dateReference(null).typeIncome(typeIncome2User1)
+				.dateInclusion(incomeDate3User1).isReceived(false).dateReference(incomeDate3User1).typeIncome(typeIncome2User1)
 				.user(user1).build();
 
 		var income4User1 = Income.builder().id(null).description("Project PJ").value(1060.00)
@@ -97,10 +97,10 @@ public class DBService {
 		var incomeDate1User2 = LocalDate.of(2023, 1, 16);
 		var incomeDate2User2 = LocalDate.of(2023, 1, 31);
 
-		var income1User2 = Income.builder().id(null).description("First installment").value(1000.00)
+		var income1User2 = Income.builder().id(null).description("First installment").value(1000.00).dateReference(incomeDate1User2)
 				.dateInclusion(incomeDate1User2).isReceived(true).typeIncome(typeIncome2User2).user(user2).build();
 
-		var income2User2 = Income.builder().id(null).description("Second installment").value(500.50)
+		var income2User2 = Income.builder().id(null).description("Second installment").value(500.50).dateReference(incomeDate2User2)
 				.dateInclusion(incomeDate2User2).isReceived(false).typeIncome(typeIncome2User2).user(user2).build();
 
 		incomeRepository.saveAll(Arrays.asList(income1User1, income2User1, income3User1, income4User1, income5User1,
