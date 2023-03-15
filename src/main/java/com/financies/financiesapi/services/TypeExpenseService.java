@@ -20,14 +20,14 @@ public class TypeExpenseService {
 	private final TypeExpenseRepository typeExpenseRepository;
 	private final UserService userService;
 
-	public void create(String description) {
+	public void create(TypeExpenseDTO typeExpenseDTO) {
 
 		var userLogged = userService.getUserLogged();
 
-		if (existsByDescription(description, userLogged)) {
+		if (existsByDescription(typeExpenseDTO.getDescription(), userLogged)) {
 			throw new BusinessException("Type of expense already exist");
 		}
-		var typeExpense = TypeExpense.builder().id(null).description(description).user(userLogged).build();
+		var typeExpense = TypeExpense.builder().id(null).description(typeExpenseDTO.getDescription()).user(userLogged).build();
 
 		typeExpenseRepository.save(typeExpense);
 	}
