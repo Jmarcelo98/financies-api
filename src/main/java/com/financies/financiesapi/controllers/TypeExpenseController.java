@@ -1,5 +1,7 @@
 package com.financies.financiesapi.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +27,8 @@ public class TypeExpenseController {
 	private final TypeExpenseService typeExpenseService;
 	
 	@PostMapping
-	public ResponseEntity<Void> createTypeExpense(String description){
-		typeExpenseService.create(description);
+	public ResponseEntity<Void> createTypeExpense(@RequestBody @Valid TypeExpenseDTO typeExpenseDTO){
+		typeExpenseService.create(typeExpenseDTO);
 		return ResponseEntity.ok().build();
 	}
 	
