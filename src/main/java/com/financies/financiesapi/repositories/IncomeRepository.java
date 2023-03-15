@@ -23,7 +23,7 @@ public interface IncomeRepository extends JpaRepository<Income, Integer> {
 			+ "(:monthReference is null or month(i.dateReference) = :monthReference) " 
 			+ "and "
 			+ "(:typeIncome is null or ti.id = :typeIncome) "
-			+ "ORDER BY i.dateInclusion Desc")
+			+ "ORDER BY i.dateReference DESC")
 	Page<Income> findAllByFilterAndPageable(@Param("user") Integer user, @Param("isReceived") Boolean isReceived,
 			@Param("yearReference") Integer yearReference, @Param("monthReference") Integer monthReference,
 			@Param("typeIncome") Integer typeIncome, Pageable pageable);
