@@ -1,5 +1,7 @@
 package com.financies.financiesapi.services;
 
+import java.time.LocalDate;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -44,6 +46,13 @@ public class IncomeService {
 		}
 
 		return IncomeMapper.INSTANCE.entityToDTO(type);
+
+	}
+
+	public Double getCurrentIncome() {
+
+		return incomeRepository.getCurrentIncome(userService.getUserLogged().getId(), LocalDate.now().getYear(),
+				LocalDate.now().getMonth().getValue());
 
 	}
 
