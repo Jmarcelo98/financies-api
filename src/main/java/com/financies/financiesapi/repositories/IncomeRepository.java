@@ -23,10 +23,8 @@ public interface IncomeRepository extends JpaRepository<Income, Integer> {
 	Income findByIdAndUser(Integer id, User user);
 
 	@Query("SELECT SUM(i.value) FROM Income i " + "JOIN i.user u " + "WHERE u.id = :user " + "and "
-			+ "i.isReceived = TRUE " + "and " + "year(i.dateReference) = :yearReference " + "and "
-			+ "month(i.dateReference) = :monthReference ")
-	Double getCurrentIncome(@Param("user") Integer user, @Param("yearReference") Integer yearReference,
-			@Param("monthReference") Integer monthReference);
+			+ "i.isReceived = TRUE ")
+	Double getCurrentIncome(@Param("user") Integer user);
 
 	boolean existsByIdAndUser(Integer id, User user);
 
