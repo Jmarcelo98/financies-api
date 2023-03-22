@@ -45,10 +45,9 @@ public class DBService {
 		var user2 = User.builder().id(null).name("Marcos Giovanny").dateCreation(localDateUser2)
 				.dateBirth(localDateUserBirth2).photo(null).email("marcos@gmail.com").password(encoder.encode("12345"))
 				.build();
-		
-		var user3 = User.builder().id(null).name("User User").dateCreation(LocalDate.now())
-				.dateBirth(localDateUser1).photo(null).email("teste@gmail.com").password(encoder.encode("teste"))
-				.build();
+
+		var user3 = User.builder().id(null).name("User User").dateCreation(LocalDate.now()).dateBirth(localDateUser1)
+				.photo(null).email("teste@gmail.com").password(encoder.encode("teste")).build();
 
 		userRepository.saveAll(Arrays.asList(user1, user2, user3));
 
@@ -83,8 +82,8 @@ public class DBService {
 				.isReceived(true).typeIncome(typeIncome1User1).dateReference(incomeDate2User1).user(user1).build();
 
 		var income3User1 = Income.builder().id(null).description("Cruzeiro win against Atlético-MG").value(60.00)
-				.dateInclusion(incomeDate3User1).isReceived(false).dateReference(incomeDate3User1).typeIncome(typeIncome2User1)
-				.user(user1).build();
+				.dateInclusion(incomeDate3User1).isReceived(false).dateReference(incomeDate3User1)
+				.typeIncome(typeIncome2User1).user(user1).build();
 
 		var income4User1 = Income.builder().id(null).description("Project PJ").value(1060.00)
 				.dateInclusion(incomeDate3User1).isReceived(true).dateReference(incomeDate3User1)
@@ -101,11 +100,13 @@ public class DBService {
 		var incomeDate1User2 = LocalDate.of(2023, 1, 16);
 		var incomeDate2User2 = LocalDate.of(2023, 1, 31);
 
-		var income1User2 = Income.builder().id(null).description("First installment").value(1000.00).dateReference(incomeDate1User2)
-				.dateInclusion(incomeDate1User2).isReceived(true).typeIncome(typeIncome2User2).user(user2).build();
+		var income1User2 = Income.builder().id(null).description("First installment").value(1000.00)
+				.dateReference(incomeDate1User2).dateInclusion(incomeDate1User2).isReceived(true)
+				.typeIncome(typeIncome2User2).user(user2).build();
 
-		var income2User2 = Income.builder().id(null).description("Second installment").value(500.50).dateReference(incomeDate2User2)
-				.dateInclusion(incomeDate2User2).isReceived(false).typeIncome(typeIncome2User2).user(user2).build();
+		var income2User2 = Income.builder().id(null).description("Second installment").value(500.50)
+				.dateReference(incomeDate2User2).dateInclusion(incomeDate2User2).isReceived(false)
+				.typeIncome(typeIncome2User2).user(user2).build();
 
 		incomeRepository.saveAll(Arrays.asList(income1User1, income2User1, income3User1, income4User1, income5User1,
 				income6User1, income1User2, income2User2));
@@ -121,12 +122,21 @@ public class DBService {
 		var expenseDate2User1 = LocalDate.of(2023, 2, 10);
 
 		var expense1User2 = Expense.builder().id(null).description("Uber to home").value(35.90)
-				.dateInclusion(LocalDate.now()).isReceived(true).dateReference(LocalDate.now()).typeExpense(typeExpense1User2).user(user2).build();
+				.dateInclusion(LocalDate.now()).isReceived(true).dateReference(LocalDate.now())
+				.typeExpense(typeExpense1User2).user(user2).build();
 
 		var expense2User2 = Expense.builder().id(null).description("Lunch").value(20.00)
-				.dateInclusion(expenseDate2User1).isReceived(false).dateReference(null).typeExpense(typeExpense2User2).user(user2).build();
+				.dateInclusion(expenseDate2User1).isReceived(false).dateReference(null).typeExpense(typeExpense2User2)
+				.user(user2).build();
 
-		expenseRepository.saveAll(Arrays.asList(expense1User1, expense2User1, expense1User2, expense2User2));
+		var expense3User2 = Expense.builder().id(null).description("Pizza").value(44.90).dateInclusion(LocalDate.now())
+				.isReceived(true).dateReference(LocalDate.now()).typeExpense(typeExpense2User2).user(user2).build();
+
+		var expense4User2 = Expense.builder().id(null).description("Gasoline").value(94.90).dateInclusion(LocalDate.now())
+				.isReceived(true).dateReference(LocalDate.now()).typeExpense(typeExpense1User2).user(user2).build();
+
+		expenseRepository.saveAll(Arrays.asList(expense1User1, expense2User1, expense1User2, expense2User2,
+				expense3User2, expense4User2));
 	}
 
 }
