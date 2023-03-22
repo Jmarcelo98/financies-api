@@ -49,7 +49,7 @@ public class IncomeService {
 
 	public Double getCurrentIncome() {
 
-		return incomeRepository.getCurrentIncome(userService.getUserLogged().getId());
+		return incomeRepository.getCurrentIncome(userService.getUserLogged().getId()).orElse(0.0);
 
 	}
 

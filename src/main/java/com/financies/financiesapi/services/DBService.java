@@ -45,8 +45,12 @@ public class DBService {
 		var user2 = User.builder().id(null).name("Marcos Giovanny").dateCreation(localDateUser2)
 				.dateBirth(localDateUserBirth2).photo(null).email("marcos@gmail.com").password(encoder.encode("12345"))
 				.build();
+		
+		var user3 = User.builder().id(null).name("User User").dateCreation(LocalDate.now())
+				.dateBirth(localDateUser1).photo(null).email("teste@gmail.com").password(encoder.encode("teste"))
+				.build();
 
-		userRepository.saveAll(Arrays.asList(user1, user2));
+		userRepository.saveAll(Arrays.asList(user1, user2, user3));
 
 		var typeExpense1User1 = TypeExpense.builder().id(null).description("Spotify").user(user1).build();
 		var typeExpense2User1 = TypeExpense.builder().id(null).description("Rental").user(user1).build();
