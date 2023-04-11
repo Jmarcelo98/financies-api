@@ -1,12 +1,16 @@
 package com.financies.financiesapi.services;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.financies.financiesapi.handlers.BusinessException;
 import com.financies.financiesapi.mappers.TypeExpenseMapper;
+import com.financies.financiesapi.mappers.TypeIncomeMapper;
 import com.financies.financiesapi.model.dtos.TypeExpenseDTO;
+import com.financies.financiesapi.model.dtos.TypeIncomeDTO;
 import com.financies.financiesapi.model.entities.TypeExpense;
 import com.financies.financiesapi.model.entities.User;
 import com.financies.financiesapi.repositories.TypeExpenseRepository;
@@ -18,6 +22,7 @@ import lombok.AllArgsConstructor;
 public class TypeExpenseService {
 
 	private final TypeExpenseRepository typeExpenseRepository;
+	
 	private final UserService userService;
 
 	public void create(TypeExpenseDTO typeExpenseDTO) {
@@ -33,11 +38,19 @@ public class TypeExpenseService {
 		typeExpenseRepository.save(typeExpense);
 	}
 
-	public Page<TypeExpenseDTO> getAll(Pageable pageable) {
+	public Page<TypeExpenseDTO> getAllPageable(Pageable pageable) {
 
 		var list = typeExpenseRepository.findAllByUser(userService.getUserLogged(), pageable);
 
 		return TypeExpenseMapper.INSTANCE.pageEntityToPageDTO(list);
+	}
+	
+	public List<TypeExpenseDTO> getAll() {
+
+		var list = typeExpenseRepository.findAllByUser(userService.getUserLogged());
+
+		return TypeExpenseMapper.INSTANCE.listEntityToListDTO(list);
+
 	}
 
 	public TypeExpenseDTO getById(Integer id) {
