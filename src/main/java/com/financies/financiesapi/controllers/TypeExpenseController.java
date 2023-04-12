@@ -1,5 +1,7 @@
 package com.financies.financiesapi.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.data.domain.Page;
@@ -34,9 +36,15 @@ public class TypeExpenseController {
 	
 	@GetMapping
 	public ResponseEntity<Page<TypeExpenseDTO>> getAllTypeExpenses(Pageable pageable){
-		return ResponseEntity.ok(typeExpenseService.getAll(pageable));
+		return ResponseEntity.ok(typeExpenseService.getAllPageable(pageable));
 		
 	}
+	
+	@GetMapping("/all")
+	public ResponseEntity<List<TypeExpenseDTO>> getAll() {
+		return ResponseEntity.ok(typeExpenseService.getAll());
+	}
+
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<TypeExpenseDTO> getById(@PathVariable Integer id){

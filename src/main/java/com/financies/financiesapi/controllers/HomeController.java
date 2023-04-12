@@ -25,9 +25,9 @@ public class HomeController {
 		return ResponseEntity.ok(homeService.getCurrentBalance());
 	}
 
-	@GetMapping("/monthly-expenses")
-	public ResponseEntity<List<ExpenseCategoryMonthlyDTO>> getMonthlyExpenses() {
-		return ResponseEntity.ok(homeService.getExpenseCategoryMonthly());
-	}
+//	@GetMapping("/monthly-expenses")
+//	public ResponseEntity<List<ExpenseCategoryMonthlyDTO>> getMonthlyExpenses() {
+//		return ResponseEntity.ok(homeService.getExpenseCategoryMonthly());
+//	}
 
 }
