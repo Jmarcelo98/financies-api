@@ -7,7 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.financies.financiesapi.model.entities.TypeExpense;
-import com.financies.financiesapi.model.entities.TypeIncome;
 import com.financies.financiesapi.model.entities.User;
 
 public interface TypeExpenseRepository extends JpaRepository<TypeExpense, Integer> {

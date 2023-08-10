@@ -1,5 +1,6 @@
 package com.financies.financiesapi.repositories;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -27,6 +28,8 @@ public interface IncomeRepository extends JpaRepository<Income, Integer> {
 	@Query("SELECT SUM(i.value) FROM Income i " + "JOIN i.user u " + "WHERE u.id = :user " + "and "
 			+ "i.isReceived = TRUE ")
 	Optional<Double> getCurrentIncome(@Param("user") Integer user);
+	
+	List<Income> findTop4ByUserAndIsReceivedOrderByDateReferenceDesc(User user, Boolean received);
 
 	boolean existsByIdAndUser(Integer id, User user);
 

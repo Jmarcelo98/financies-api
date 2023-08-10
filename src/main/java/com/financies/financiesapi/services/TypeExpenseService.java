@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.financies.financiesapi.handlers.BusinessException;
 import com.financies.financiesapi.mappers.TypeExpenseMapper;
-import com.financies.financiesapi.mappers.TypeIncomeMapper;
 import com.financies.financiesapi.model.dtos.TypeExpenseDTO;
-import com.financies.financiesapi.model.dtos.TypeIncomeDTO;
 import com.financies.financiesapi.model.entities.TypeExpense;
 import com.financies.financiesapi.model.entities.User;
 import com.financies.financiesapi.repositories.TypeExpenseRepository;

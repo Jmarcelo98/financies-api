@@ -10,7 +10,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.financies.financiesapi.model.entities.Expense;
-import com.financies.financiesapi.model.entities.Income;
 import com.financies.financiesapi.model.entities.User;
 
 public interface ExpenseRepository extends JpaRepository<Expense, Integer> {
@@ -28,7 +27,7 @@ public interface ExpenseRepository extends JpaRepository<Expense, Integer> {
 //			"month(e.dateReference) = :monthReference GROUP BY te.description" )
 //	List<String> findAllByYearMonth(@Param("user") Integer user,
 //			@Param("yearReference") Integer yearReference, @Param("monthReference") Integer monthReference);
-	
+
 	@Query("SELECT i FROM Expense i " + "JOIN i.typeExpense ti " + "JOIN i.user u " + "WHERE u.id = :user " + "and "
 			+ "(:isReceived is null or i.isReceived = :isReceived) " + "and "
 			+ "(:yearReference is null or year(i.dateReference) = :yearReference) " + "and "
@@ -43,6 +42,8 @@ public interface ExpenseRepository extends JpaRepository<Expense, Integer> {
 	@Query("SELECT SUM(i.value) FROM Expense i " + "JOIN i.user u " + "WHERE u.id = :user " + "and "
 			+ "i.isReceived = TRUE ")
 	Optional<Double> getCurrentExpense(@Param("user") Integer user);
+
+	List<Expense> findTop4ByUserAndIsReceivedOrderByDateReferenceDesc(User user, Boolean received);
 
 	boolean existsByIdAndUser(Integer id, User user);
 

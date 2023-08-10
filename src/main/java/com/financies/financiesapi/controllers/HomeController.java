@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.financies.financiesapi.model.dtos.CurrentBalanceDTO;
-import com.financies.financiesapi.model.dtos.ExpenseCategoryMonthlyDTO;
+import com.financies.financiesapi.model.dtos.LastTransactionDTO;
 import com.financies.financiesapi.services.HomeService;
 
 import lombok.AllArgsConstructor;
@@ -23,6 +23,11 @@ public class HomeController {
 	@GetMapping("/current-balance")
 	public ResponseEntity<CurrentBalanceDTO> getCurrentBalance() {
 		return ResponseEntity.ok(homeService.getCurrentBalance());
+	}
+
+	@GetMapping("/last-transactions")
+	public ResponseEntity<List<LastTransactionDTO>> getLastTransactions() {
+		return ResponseEntity.ok(homeService.getLastTransactions());
 	}
 
 //	@GetMapping("/monthly-expenses")

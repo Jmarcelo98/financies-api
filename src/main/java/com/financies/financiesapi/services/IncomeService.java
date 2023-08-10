@@ -1,5 +1,7 @@
 package com.financies.financiesapi.services;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -73,6 +75,13 @@ public class IncomeService {
 		}
 
 		incomeRepository.deleteById(id);
+
+	}
+
+	public List<IncomeDTO> getLastFourIncome() {
+
+		return IncomeMapper.INSTANCE.listEntityToListDTO(
+				incomeRepository.findTop4ByUserAndIsReceivedOrderByDateReferenceDesc(userService.getUserLogged(), true));
 
 	}
 
